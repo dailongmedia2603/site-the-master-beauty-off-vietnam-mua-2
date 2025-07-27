@@ -51,16 +51,17 @@ export function ContactForm() {
     const toastId = showLoading("Đang gửi đăng ký...");
 
     try {
-      const { data, error } = await supabase.functions.invoke('send-contact-email', {
-        body: values,
-      });
+      const { error } = await supabase
+        .from('contacts')
+        .insert([
+          { name: values.name, phone: values.phone, role: values.role }
+        ]);
 
       dismissToast(toastId);
 
       if (error) {
-        console.error("Supabase function error:", error);
-        const errorMessage = error.context?.error || error.message || "Đã có lỗi không xác định xảy ra.";
-        showError(errorMessage);
+        console.error("Supabase insert error:", error);
+        showError("Không thể lưu đăng ký. Vui lòng thử lại.");
         return;
       }
 
