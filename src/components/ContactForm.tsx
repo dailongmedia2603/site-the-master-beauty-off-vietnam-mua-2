@@ -51,17 +51,17 @@ export function ContactForm() {
     const toastId = showLoading("Đang gửi đăng ký...");
 
     try {
-      const { error } = await supabase.functions.invoke('send-contact-email', {
+      const { data, error } = await supabase.functions.invoke('send-contact-email', {
         body: values,
       });
 
       dismissToast(toastId);
 
       if (error) {
-        // Thay vì hiển thị lỗi chung, chúng ta đưa ra một thông báo cụ thể hơn.
-        // Lỗi gốc vẫn sẽ được ghi lại trong console để gỡ lỗi.
         console.error("Supabase function error:", error);
-        throw new Error("Gửi email thất bại. Vui lòng kiểm tra lại cấu hình API Key trên Supabase.");
+        const errorMessage = error.context?.error || error.message || "Đã có lỗi không xác định xảy ra.";
+        showError(errorMessage);
+        return;
       }
 
       showSuccess("Đăng ký thành công! Cảm ơn bạn.");

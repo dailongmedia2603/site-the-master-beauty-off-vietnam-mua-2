@@ -1,0 +1,16 @@
+{
+  "compilerOptions": {
+    "target": "esnext",
+    "module": "esnext",
+    "moduleResolution": "bundler",
+    "lib": ["esnext", "deno.ns", "dom"],
+    "strict": true,
+    "esModuleInterop": true,
+    "skipLibCheck": true,
+    "forceConsistentCasingInFileNames": true,
+    "types": [
+      "https://deno.land/x/supabase/functions.ts"
+    ]
+  },
+  "include": ["./**/*.ts"]
+}
