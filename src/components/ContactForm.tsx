@@ -58,7 +58,10 @@ export function ContactForm() {
       dismissToast(toastId);
 
       if (error) {
-        throw error;
+        // Thay vì hiển thị lỗi chung, chúng ta đưa ra một thông báo cụ thể hơn.
+        // Lỗi gốc vẫn sẽ được ghi lại trong console để gỡ lỗi.
+        console.error("Supabase function error:", error);
+        throw new Error("Gửi email thất bại. Vui lòng kiểm tra lại cấu hình API Key trên Supabase.");
       }
 
       showSuccess("Đăng ký thành công! Cảm ơn bạn.");
