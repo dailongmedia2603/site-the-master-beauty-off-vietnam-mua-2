@@ -1,35 +1,25 @@
-import { MadeWithDyad } from "@/components/made-with-dyad";
+import h1 from "@/image/h1.webp";
+import h2 from "@/image/h2.webp";
+import h3 from "@/image/h3.webp";
+import h8 from "@/image/h8.webp";
+import h8_bg from "@/image/h8_bg.webp";
+import { ContactForm } from "@/components/ContactForm";
+import YoutubeEmbed from "@/components/YoutubeEmbed";
 
 const Index = () => {
   return (
-    <div className="min-h-screen bg-white font-sans">
+    <div className="min-h-screen bg-white">
       <div className="container mx-auto max-w-md p-0">
-        <header className="text-center my-8 px-4">
-          <h1 className="text-4xl font-bold text-gray-800">Tên Website Của Bạn</h1>
-          <p className="text-gray-500 mt-2">Một mô tả ngắn gọn về trang web</p>
-        </header>
-
-        <main className="space-y-8">
-          <div>
-            <img src="/placeholder.svg" alt="Placeholder Image 1" className="w-full h-auto" />
-            <p className="text-center text-gray-600 mt-4 px-4">Đây là nơi bạn có thể đặt chú thích cho hình ảnh đầu tiên.</p>
-          </div>
-
-          <div>
-            <img src="/placeholder.svg" alt="Placeholder Image 2" className="w-full h-auto" />
-            <p className="text-center text-gray-600 mt-4 px-4">Và đây là chú thích cho hình ảnh thứ hai.</p>
-          </div>
-
-          <div>
-            <img src="/placeholder.svg" alt="Placeholder Image 3" className="w-full h-auto" />
-            <p className="text-center text-gray-600 mt-4 px-4">Bạn có thể thêm bao nhiêu hình ảnh tùy thích.</p>
-          </div>
+        <main>
+          <img src={h1} alt="Hình ảnh 1" className="w-full h-auto block" />
+          <img src={h2} alt="Hình ảnh 2" className="w-full h-auto block" />
+          <img src={h3} alt="Hình ảnh 3" className="w-full h-auto block" />
+          <YoutubeEmbed embedId="dQw4w9WgXcQ" />
+          <img src={h8} alt="Hình ảnh 5" className="w-full h-auto block" />
+          <YoutubeEmbed embedId="L_LUpnjgPso" />
+          <img src={h8_bg} alt="Hình ảnh 7" className="w-full h-auto block" />
+          <ContactForm />
         </main>
-
-        <footer className="text-center my-8 px-4">
-          <p className="text-gray-500">Thông tin liên hệ hoặc lời kết.</p>
-          <MadeWithDyad />
-        </footer>
       </div>
     </div>
   );
