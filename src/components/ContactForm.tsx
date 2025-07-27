@@ -22,7 +22,8 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { toast } from "@/components/ui/use-toast";
+import { supabase } from "@/integrations/supabase/client";
+import { showLoading, showSuccess, showError, dismissToast } from "@/utils/toast";
 
 const formSchema = z.object({
   name: z.string().min(2, {
@@ -46,13 +47,28 @@ export function ContactForm() {
     },
   });
 
-  function onSubmit(values: z.infer<typeof formSchema>) {
-    console.log(values);
-    toast({
-      title: "Đăng ký thành công!",
-      description: "Cảm ơn bạn đã đăng ký. Chúng tôi sẽ sớm liên hệ với bạn.",
-    });
-    form.reset();
+  async function onSubmit(values: z.infer<typeof formSchema>) {
+    const toastId = showLoading("Đang gửi đăng ký...");
+
+    try {
+      const { error } = await supabase.functions.invoke('send-contact-email', {
+        body: values,
+      });
+
+      dismissToast(toastId);
+
+      if (error) {
+        throw error;
+      }
+
+      showSuccess("Đăng ký thành công! Cảm ơn bạn.");
+      form.reset();
+    } catch (error) {
+      dismissToast(toastId);
+      console.error("Error submitting form:", error);
+      const errorMessage = error instanceof Error ? error.message : "Đã có lỗi xảy ra. Vui lòng thử lại.";
+      showError(errorMessage);
+    }
   }
 
   return (
