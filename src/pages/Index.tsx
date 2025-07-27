@@ -2,7 +2,7 @@ import h1 from "@/image/h1.webp";
 import h2 from "@/image/h2.webp";
 import h3 from "@/image/h3.webp";
 import h5 from "@/image/h5.webp";
-import h8_bg from "@/image/h8_bg.webp";
+import h7 from "@/image/h7.webp";
 import { ContactForm } from "@/components/ContactForm";
 import YoutubeEmbed from "@/components/YoutubeEmbed";
 
@@ -17,7 +17,7 @@ const Index = () => {
           <YoutubeEmbed embedId="dQw4w9WgXcQ" />
           <img src={h5} alt="Hình ảnh 5" className="w-full h-auto block" />
           <YoutubeEmbed embedId="L_LUpnjgPso" />
-          <img src={h8_bg} alt="Hình ảnh 7" className="w-full h-auto block" />
+          <img src={h7} alt="Hình ảnh 7" className="w-full h-auto block" />
           <ContactForm />
         </main>
       </div>
